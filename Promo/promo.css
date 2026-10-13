@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;;
+    margin: 0;
+    padding: 3.125rem 1.25rem;
+    height: 100vh;          /* ← высота = экран */
+    box-sizing: border-box; /* ← padding входит в height */
+    overflow: hidden;
+    display: flex;              /* ← центрируем .app */
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.promo-title {
+    position: relative;
+    font-size: 6rem;
+    font-weight: 700;
+
+    /* Градиент */
+    background: linear-gradient(180deg, #8B0000, #FF4500,#FFD700);
+    background-size: 200% 200%;
+
+    /* Обрезка по тексту */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+
+    /* Свечение */
+    filter: drop-shadow(0 0 30px #e66030) drop-shadow(0 0 60px #e25724ec);
+}
+
+.promo-title--main {
+    animation: fire 3s ease-in-out infinite, glow 3s ease-in-out infinite;
+}
+
+.promo-line {
+    width: 140%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #110f0e, transparent);
+    filter: blur(1px);
+    margin: 0.2em 0;
+    animation: linePulse 3s ease-in-out infinite;
+}
+
+.promo-title--main::before {
+    content: "";
+    position: absolute;
+    background: #e66030;
+    top: 100%;
+    left: -200px;
+    width: 170%;
+    height: 130%;
+
+    transform: perspective(1em) rotateX(30deg);
+    filter: blur(0.35em);
+    opacity: 0.2;
+
+    animation: linePulse 3s ease-in-out infinite;
+}
+
+
+.promo-title--reflection {
+    position: relative;
+    z-index: 9999;
+    font-size: 5em;
+    opacity: 0.2;
+    margin-top: -7rem;   /* ← чтобы отражение «прилипло» к тексту */
+
+    filter: none;
+
+    animation: fire 3s ease-in-out infinite, scale 3s ease-in-out infinite;
+    transform-origin: bottom;
+}
+
+
+
+
+@keyframes fire {
+    0%, 100% { background-position: 0% 0%; }
+    50%      { background-position: 0% 100%; }
+}
+
+@keyframes linePulse {
+    0%, 100% { opacity: 0.1; }
+    50%      { opacity: 0.3; }
+}
+
+@keyframes glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px #e66030) drop-shadow(0 0 40px #e25724ec);
+    }
+    50% {
+        filter: drop-shadow(0 0 40px #e66030) drop-shadow(0 0 80px #e25724ec);
+    }
+}
+
+@keyframes scale {
+    0%, 100% { transform: scaleY(-1) perspective(1em) rotateX(-30deg); }
+    50%      { transform: scaleY(-1) perspective(1em) rotateX(-40deg); }
+}

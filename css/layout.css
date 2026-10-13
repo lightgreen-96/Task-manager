@@ -1,0 +1,298 @@
+.app {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    background: var(--bg-app);
+    border-radius: 1.875rem;
+    width: 80%;                /* ← растягивается */
+    max-width: 1800px;
+    height: 90%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.app a {
+    color: #F4B860;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.sidebar-left {
+    background: var(--bg-sidebar);
+    border-top-left-radius: 1.875rem;
+    border-bottom-left-radius: 1.875rem; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: var(--space-col) var(--space-col-x);
+    min-height: 0;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 1.25rem;
+    height: 32px;
+    width: 100px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.logo img {
+    transform: translateY(15px);
+    width: clamp(15px, 5vw, 80px);
+    height: clamp(15px, 5vw, 80px);
+
+    flex-shrink: 0;
+}
+
+.weekly-pinned {
+    display: flex;
+    flex-direction: column;
+    flex: 1;              /* ← занимает всё место между лого и календарём */
+    min-height: 0;
+    margin-top: 1.25rem;
+}
+
+.weekly-pinned__header {
+    display: flex;
+    margin: 0.625rem 0;
+    padding-bottom: 0.9375rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.weekly-pinned__header h2 {
+    font-weight: 400;
+}
+
+.weekly-pinned__add {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 1rem;
+    gap: 1.5625rem;
+    padding: 0.9375rem 1.5625rem;
+    background: var(--bg-card-left);
+    border: none;
+    border-radius: 0.9375rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: box-shadow 0.2s;
+    margin-right: 0.5rem;
+}
+
+.weekly-pinned__add:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.weekly-pinned__add-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--task-icon-size);
+    height: var(--task-icon-size);
+    background: #F8D57E;
+    border-radius: 0.625rem;
+    flex-shrink: 0;
+}
+
+
+
+/* CENTER */
+
+.main-content {
+    padding: var(--space-col) var(--space-col-x);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;   
+}
+/* HEADER */
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;   /* ← выравниваем по верху */
+    flex-shrink: 0;
+    padding-bottom: 0.9375rem;
+}
+.schedule-header__left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.schedule-header__title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.schedule-header__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.1rem;
+}
+
+.schedule-header__date {
+    font-size: 2.3rem;
+    color: #F4B860;
+    margin: 0;
+}
+
+.schedule-header__nav {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.schedule-header__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--icon-xs) * 2.2);      /* ← кнопка = 1.8× от иконки */
+    height: calc(var(--icon-xs) * 2.2);
+    background: #F2F2F2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.schedule-header__arrow svg {
+    width: var(--icon-xs);
+    height: var(--icon-xs);
+}
+
+.schedule-header__arrow:last-child {
+    transform: rotate(180deg);
+}
+
+.schedule-header__arrow:hover {
+    background: #E5E5E5;
+}
+
+.schedule-header__add {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.schedule-header__add:hover {
+    transform: scale(120%);
+}
+
+
+/* SIDEBAR RIGHT */
+
+.sidebar-right {
+    padding: var(--space-col) var(--space-col-x);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 2rem;
+}
+
+.profile-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.profile-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-right: -3rem;
+}
+
+.profile-avatar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: clamp(15px, 3vw, 60px);
+    height: clamp(15px, 3vw, 60px);
+}
+
+.theme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F4B860;
+    border-radius: 30px;
+    padding: 0.3rem;
+    gap: 1.2rem;
+}
+
+
+.theme svg {
+    display: block;
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    color: #F8D57E;
+}
+
+.light-theme, 
+.dark-theme {
+    background: white;
+    border-radius: 30px;
+    padding: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.light-theme:hover {
+    background: #e69e33;
+}
+
+.dark-theme:hover {
+    background: #5c8cca;
+}
+
+.data-theme-target {
+    background: #636262;
+}
+
+.dark-theme.theme--active {
+    outline: 2px solid #548ecf;
+    background: #5c8cca;
+    box-shadow: 0 0 8px rgba(85, 136, 212, 0.6);
+}
+
+.light-theme.theme--active {
+    outline: 2px solid #cead65;
+    background: #e69e33;
+    box-shadow: 0 0 8px rgba(85, 136, 212, 0.6);
+}
+
+[data-theme="dark"] .pinned-card:hover,
+[data-theme="dark"] .schedule-card:hover {
+    box-shadow: 0 0 10px rgba(244, 184, 96, 0.25);
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.sidebar-right__widgets {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}

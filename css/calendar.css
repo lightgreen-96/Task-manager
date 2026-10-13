@@ -1,0 +1,237 @@
+/* Календарь */
+
+.calendar {
+    flex-shrink: 0;
+    margin-top: 1.25rem;
+    font-size: clamp(0.5rem, 0.7vw, 1rem);
+    margin-right: 0.5rem;
+}
+
+.calendar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+}
+
+.calendar__title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.calendar__nav {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.calendar__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--icon-xs) * 1.8);      /* ← кнопка = 1.8× от иконки */
+    height: calc(var(--icon-xs) * 1.8);
+    background: #F2F2F2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #222;
+}
+
+.calendar__arrow svg {
+    display: block;
+    width: var(--icon-xs);
+    height: var(--icon-xs);
+}
+
+.calendar__arrow--next svg {
+    transform: rotate(180deg);
+}
+
+.calendar__arrow:hover {
+    background: #E5E5E5;
+}
+
+/* Контейнер — относительно для absolute-меню */
+.calendar__weeks {
+    position: relative;
+}
+
+/* Кнопка (видимая часть) */
+.calendar__weeks-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: inherit;
+    color: #F4B860;
+    
+    background: var(--bg-card-left);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.calendar__weeks-btn:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.calendar__weeks-btn:focus {
+    outline: none;
+    border-color: #F4B860;
+    box-shadow: 0 0 0 3px rgba(244, 184, 96, 0.2);
+}
+
+/* Выпадающее меню */
+.calendar__weeks-menu {
+     position: fixed;
+    top: calc(100% + 0.25rem);
+    right: 0;
+    z-index: 9999;
+    
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem;
+    min-width: 130px;
+    
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    /* Скрыт по умолчанию */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-1.2rem);
+    transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.25s ease;
+}
+
+.calendar__weeks-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Опции */
+.calendar__weeks-menu li {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    color: #222;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.calendar__weeks-menu li:hover {
+    background: #F6F7FB;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Активная опция — жёлтая */
+.calendar__weeks-menu li.active {
+    background: #F8D57E;
+    color: #222;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.calendar__weeks-menu li.active:hover {
+    background: #F4B860;
+}
+
+
+.calendar__weeks-select:hover {
+    border-color: #F4B860;
+}
+
+.calendar__weeks-select:focus {
+    outline: none;
+    border-color: #F4B860;
+    box-shadow: 0 0 0 3px rgba(244, 184, 96, 0.2);
+}
+
+/* Стилизация опций (работает не во всех браузерах) */
+.calendar__weeks-select option {
+    padding: 0.5rem;
+    color: #222;
+    background: #fff;
+}
+
+.calendar__weeks-select option:checked {
+    background: #F8D57E;
+    color: #222;
+}
+
+.calendar__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5em;
+    padding: 1em;
+    background: var(--bg-card-left);
+    border-radius: 1rem;
+}
+.calendar__weekday {
+    text-align: center;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #F4B860;
+    padding: 0.25em 0;
+}
+
+.calendar__day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 2.25em;
+    height: 2.25em;
+    margin: 0 auto;
+    border-radius: 50%;
+    font-size: 1em;
+    color: var(--text-main);
+    padding-top: 0.35em;
+    cursor: pointer;
+}
+
+.calendar__day:hover {
+    background: #FBFBFD;
+    color: #222;
+}
+
+.calendar__day--active {
+    background: #F4B860;
+    color: #fff;
+    font-weight: 600;
+    border: 1px solid #F4B860 ;
+}
+
+.calendar__day--selected {
+    background: #f8d49e;
+    color: #fff;
+    font-weight: 600;
+}
+
+.calendar__day--empty {
+    visibility: hidden;   /* ← невидимая, но занимает место */
+    pointer-events: none; /* ← нельзя кликнуть */
+}
+
+.calendar__day--other-month {
+    color: #C0C0C0;          /* ← бледно-серый */
+    /* или */
+    opacity: 0.4;            /* ← или через прозрачность */
+}
+
+.calendar__dot {
+    width: 0.2em;
+    height: 0.2em;
+    background: #636262;
+    border-radius: 50%;
+    display: block;
+}

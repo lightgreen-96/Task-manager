@@ -1,0 +1,240 @@
+/* Карточки weekly pinned */
+.weekly-pinned__list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.pinned-card, 
+.schedule-card {
+    display: flex;
+    position: relative; 
+    margin: 0.9375rem 0;
+    padding: 0.9375rem 1.5625rem;
+    gap: 1.5625rem;
+    background: var(--bg-card-left);
+    border-radius: 0.9375rem;
+    cursor: pointer;
+    
+}
+.pinned-card:hover, 
+.schedule-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pinned-card__content,
+.schedule-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-right: 2rem;   /* ← место для крестика */
+}
+
+.pinned-card__icon {
+    /* Размер */
+    width: var(--task-icon-size);
+    height: var(--task-icon-size);
+    aspect-ratio: 1 / 1;              /* ← всегда квадрат */
+    
+    /* Центрирование эмодзи */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Стили */
+    background: var(--bg-card-left);
+    border-radius: 0.625rem;            /* ← 8px, адаптивно */
+    
+    /* Шрифт эмодзи */
+    font-size: calc(var(--task-icon-size) * 0.7);   /* ← 70% от фона */
+    line-height: 1;                    /* ← убирает лишнюю высоту строки */
+    flex-shrink: 0;                    /* ← не сжимается */
+
+    border: 2px solid #E5A84B;
+}
+
+/* Чекбокс задачи */
+.schedule-card__checkbox {
+    /* Размер и форма */
+    width: var(--task-icon-size);
+    height: var(--task-icon-size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;                  /* ← круглый */
+    flex-shrink: 0;
+
+    /* Центрирование SVG */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Цвета */
+    background: transparent;
+    border: 2px solid #D3D3D3;           /* ← тонкая серая обводка */
+    cursor: pointer;
+    padding: 0;
+
+    /* Плавный переход */
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    /* SVG по умолчанию скрыта */
+    position: relative;
+}
+
+/* SVG-галочка внутри */
+.schedule-card__check-icon {
+    width: 60%;                          /* ← 60% от размера чекбокса */
+    height: 60%;
+    color: #fff;                          /* ← белая галочка */
+    opacity: 0;                           /* ← скрыта по умолчанию */
+    transition: opacity 0.2s ease;
+}
+
+/* Hover на чекбокс — обводка становится жёлтой, галочка появляется */
+.schedule-card__checkbox:hover {
+    border-color: #F4B860;
+    background: #F8D57E;
+}
+
+.schedule-card__checkbox:hover .schedule-card__check-icon {
+    opacity: 1;
+}
+
+/* Выполненная задача — чекбокс закрашен */
+.schedule-card--done .schedule-card__checkbox {
+    background: #F4B860;
+    border: 2px solid #E5A84B;
+}
+
+.schedule-card--done .schedule-card__check-icon {
+    opacity: 1;
+}
+
+/* Hover на выполненном чекбоксе — задача вернется в работу */
+.schedule-card--done .schedule-card__checkbox:hover {
+    background: #fff;
+    border-color: #F4B860;
+}
+
+.schedule-card--done .schedule-card__checkbox:hover .schedule-card__check-icon {
+    opacity: 0;   /* ← галочка исчезает, остается пустой кружок */
+}
+
+.pinned-card__title, 
+.schedule-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.pinned-card__date, 
+.schedule-card__time {
+    font-size: 0.875rem;
+    margin: 0.25rem 0;
+    font-weight: 400;
+}
+
+.pinned-card__tag {
+    display: inline-block;
+    width: fit-content;
+    background: #f5c542;
+    color: var(--text-on-accent);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+.pinned-card__description, 
+.schedule-card__description {
+    font-size: 0.875rem;
+    margin: 0.5rem 0 0;
+    white-space: normal;   /* ← разрешает перенос */
+    max-width: 250px;
+}
+
+.schedule-card__delete,
+.pinned-card__delete {
+    position: absolute;        
+    top: 1rem;                      
+    right: 1rem; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #070707;
+    padding: 0.25rem;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, background 0.2s;
+}
+
+.schedule-card__delete:hover,
+.pinned-card__delete:hover {
+    color: #F4B860;
+    background: #FBFBFD;
+}
+
+.weekly-pinned__empty, 
+.schedule-card__empty {
+    font-size: 0.875rem;
+    color: #888;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* SCHEDULE CARDS */
+.schedule-card-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.schedule-card {
+    background: var(--bg-card);
+    margin-left: 1.875rem;
+    margin-right: 1.875rem;
+}
+
+.schedule-card__content {
+    flex: 1;   /* ← занимает всё свободное место */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.schedule-card__header {
+    display: flex;
+    justify-content: space-between;   /* ← заголовок слева, дата справа */
+    align-items: center;
+}
+
+.schedule-card__title {
+    font-size: 1.0625rem;
+}
+
+.schedule-card__time {
+    text-align: right;
+    white-space: normal;   /* ← разрешает перенос */
+    max-width: 3.75rem;
+    font-size: 0.875rem;      /* ← ограничивает ширину */
+}
+
+.schedule-card--done {
+    background: #F8D57E;
+}
+
+.schedule-card--done .schedule-card__title,
+.schedule-card--done .schedule-card__time,
+.schedule-card--done .schedule-card__description {
+    color: var(--text-on-accent);
+}
+
+.schedule-card__description {
+    white-space: pre-line;   /* ← уважает \n */
+    font-size: 0.875rem;
+}

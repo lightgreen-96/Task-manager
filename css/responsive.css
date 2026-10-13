@@ -1,0 +1,45 @@
+@media (max-width: 768px) {
+    /* Body — убираем центрирование, padding */
+    body {
+        padding: 0;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;    /* ← разрешаем скролл страницы */
+        display: block;
+    }
+
+    /* App — одна колонка, без скруглений */
+    .app {
+        grid-template-columns: 1fr;    /* ← одна колонка */
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        overflow: visible;
+    }
+
+    /* Все секции — без скруглений, с отступами */
+    .sidebar-left,
+    .main-content,
+    .sidebar-right {
+        padding: 1.5rem 1.25rem;
+        border-radius: 0;
+        overflow: visible;    /* ← отключаем внутренний скролл */
+    }
+
+    /* Убираем фиксированную высоту скроллящихся блоков */
+    .weekly-pinned__list,
+    .schedule-card-list,
+    .sidebar-right__widgets {
+        overflow: visible;
+        max-height: none;
+    }
+
+    /* Календарь — статичный, не absolute */
+    .calendar {
+        position: static;
+        margin-top: 1.5rem;
+    }
+}

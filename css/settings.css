@@ -1,0 +1,217 @@
+/* Модалка для настроек */
+
+.settingsModal {
+    display: none;               
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.settingsModal--open {
+    display: flex;
+}
+
+.settingsModal__overlay {
+    min-width: 320px;
+    position: absolute;
+    margin: 0;
+    background:rgba(0,0,0,0.5);;
+    inset: 0;
+}
+
+.settingsModal__content {
+    position: relative;
+    z-index: 2;
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: 1rem;
+    width: 760px;
+    height: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+
+.settingsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+
+.settingsHeader h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.settingsCloseButton {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+}
+
+.settingsCloseButton:hover {
+    background: #505050;
+    color: #e2c72c;
+}
+
+.settingsMainContent {
+    display: flex;
+    flex-direction: row;
+    gap: 35px; 
+    flex-grow: 0;
+}
+
+.settingsNav {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 170px;
+    gap: 4px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 12px 0;
+}
+
+.settingButton {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+    min-height: 20px;
+    padding: 10px;
+    transition: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.settingButton::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius:  10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+
+}
+
+.settingButton--active {
+    background-color: var(--settings-button);
+    border-radius:  10px;
+}
+
+.settingButton:hover::after {
+    background-color: var(--settings-button);
+    opacity: 1;
+}
+
+.settingsPanels {
+    flex: 1;               /* занимает всё оставшееся место */
+    min-width: 0;          /* чтобы содержимое не распирало контейнер */
+    display: block;
+    width: 100%;
+}
+
+.settingPanel {
+    display: none;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.settingPanel--active {
+    display: flex;
+}
+
+.settingsProfile__content,
+.settingsTime__content  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+    padding: 12px 0;
+    border-bottom: 1px solid #474747;
+}
+
+.settingsProfile__content:last-child,
+.settingsTime__content:last-child {
+    border-bottom: none;
+}
+
+.settingsProfile__name_avatar {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 7px;
+}
+
+.settingsProfile__name_avatar p {
+    font-size: 14px;
+}
+
+.settingsBtn {
+    background: transparent;
+    cursor: pointer;
+    border: #e6b03d 1px solid;
+    color: #e6b03d ;
+    border-radius: 4096px;
+    padding: 0 14px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.deleteBtn {
+    border: #e63d3d 1px solid;
+    color: #e63d3d ;    
+}
+
+.settingsBtn:hover {
+    background: rgba(231, 210, 90, 0.15);
+}
+
+.deleteBtn:hover {
+    background: rgba(231, 107, 90, 0.15);
+}
+
+.settingsBtn--active {
+    filter: drop-shadow(0 0 5px #e2c72c) drop-shadow(0 0 5px #e2c72c)
+}
+
+
+.settingsTime__content input {
+    border: 1px solid #E5E5E5;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background: var(--bg-card);
+    transition: border-color 0.2s;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.settingsTime__content input:focus {
+    border-color: #F4B860;
+    background: var(--text-on-accent);
+    outline: none;
+}
+
+.settingPanel a {
+    text-decoration: none;
+    color: #F4B860;
+}
